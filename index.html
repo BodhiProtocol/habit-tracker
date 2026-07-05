@@ -176,6 +176,22 @@
       letter-spacing: 0.3px;
     }
 
+    .install-tip {
+      margin: 16px 16px 0;
+      background: #fffbea;
+      border: 1px solid #f0c040;
+      border-radius: var(--radius);
+      padding: 12px 14px;
+      display: flex; gap: 10px; align-items: flex-start;
+    }
+    .install-tip-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+    .install-tip-text { font-size: 12px; color: #7a6000; line-height: 1.6; }
+    .install-tip-text strong { font-weight: 600; display: block; margin-bottom: 2px; color: #5a4500; }
+    .install-tip-close {
+      margin-left: auto; font-size: 16px; color: #c9a800;
+      background: none; border: none; cursor: pointer; padding: 0 2px; flex-shrink: 0;
+    }
+
     footer { text-align: center; font-size: 11px; color: #bbb; padding: 24px; }
     footer a { color: #38BDF8; text-decoration: none; }
   </style>
@@ -198,6 +214,16 @@
 </div>
 
 <div id="quote-card" class="quote-card"></div>
+
+<div class="install-tip" id="install-tip">
+  <span class="install-tip-icon">📲</span>
+  <div class="install-tip-text">
+    <strong>Add to your phone's home screen</strong>
+    iPhone: Safari → Share → Add to Home Screen<br>
+    Android: Chrome → Menu (⋮) → Add to Home Screen
+  </div>
+  <button class="install-tip-close" onclick="dismissInstallTip()" aria-label="Dismiss">×</button>
+</div>
 <div class="section-label">TODAY'S HABITS</div>
 <div id="all-done-banner"></div>
 <div class="habits" id="list"></div>
@@ -321,6 +347,14 @@ function getLast7(id) {
 
 // Render
 const DAY_LABELS = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+
+function dismissInstallTip() {
+  localStorage.setItem('bp_install_tip_dismissed', '1');
+  document.getElementById('install-tip').style.display = 'none';
+}
+if (localStorage.getItem('bp_install_tip_dismissed')) {
+  document.getElementById('install-tip').style.display = 'none';
+}
 
 function render() {
   const habits = getHabits();
