@@ -1,0 +1,13 @@
+{
+  "name": "Habit Tracker — BodhiProtocol",
+  "short_name": "Habits",
+  "description": "Track your daily habits. Build streaks. Stay consistent.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f9f9f7",
+  "theme_color": "#1D9E75",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}
